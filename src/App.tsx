@@ -21,6 +21,7 @@ export const App: React.FC = () => {
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [mobileTab, setMobileTab] = useState<'controls' | 'preview'>('controls');
 
   const primaryItem = items[0] || null;
 
@@ -173,9 +174,38 @@ export const App: React.FC = () => {
 
       {/* Contenido Principal */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full print:hidden">
+        {/* Selector de Pestañas en Móvil */}
+        <div className="lg:hidden flex rounded-xl bg-slate-200/90 p-1 mb-5 shadow-inner">
+          <button
+            type="button"
+            onClick={() => setMobileTab('controls')}
+            className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all ${
+              mobileTab === 'controls'
+                ? 'bg-white text-blue-700 shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            ⚙️ Ajustes y Archivo
+          </button>
+          <button
+            type="button"
+            onClick={() => setMobileTab('preview')}
+            className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 ${
+              mobileTab === 'preview'
+                ? 'bg-white text-blue-700 shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <span>📄 Ver Hoja Carta</span>
+            {primaryItem && (
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            )}
+          </button>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Columna Izquierda: Carga y Controles */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className={`lg:col-span-6 space-y-6 ${mobileTab === 'controls' ? 'block' : 'hidden lg:block'}`}>
             <DropZone
               primaryItem={primaryItem}
               onFilesSelected={handleFilesSelected}
@@ -195,7 +225,7 @@ export const App: React.FC = () => {
           </div>
 
           {/* Columna Derecha: Previsualización de la Hoja */}
-          <div className="lg:col-span-6 lg:sticky lg:top-6">
+          <div className={`lg:col-span-6 lg:sticky lg:top-6 ${mobileTab === 'preview' ? 'block' : 'hidden lg:block'}`}>
             <div className="bg-slate-200/60 rounded-2xl p-5 border border-slate-300/80 shadow-inner flex flex-col items-center">
               <SheetPreview
                 items={items}
