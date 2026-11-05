@@ -2,6 +2,11 @@
 
 Aplicación web desarrollada para estandarizar y agilizar el proceso de impresión de promociones pequeñas de **Boys & Girls Clubs de Puerto Rico**.
 
+### 🌐 Acceso Web en Vivo (Cualquier Dispositivo):
+👉 **[https://samuelbadillo12-oss.github.io/estandarizador-promos-bgc/](https://samuelbadillo12-oss.github.io/estandarizador-promos-bgc/)**
+
+*(Accede directamente desde tu teléfono móvil, iPad, tablet, laptop o computadora de escritorio sin instalar nada).*
+
 ---
 
 ## 🎯 Especificaciones y Proporciones
