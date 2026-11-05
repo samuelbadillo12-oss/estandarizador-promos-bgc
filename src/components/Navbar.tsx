@@ -3,9 +3,11 @@ import { Printer, HelpCircle } from 'lucide-react';
 
 interface NavbarProps {
   onOpenHelp: () => void;
+  cardWidth?: number;
+  cardHeight?: number;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenHelp }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenHelp, cardWidth = 4.00, cardHeight = 5.18 }) => {
   return (
     <header className="bg-slate-900 text-white shadow-md border-b border-slate-800 print:hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
@@ -24,7 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenHelp }) => {
               </span>
             </div>
             <p className="text-xs text-slate-400 mt-0.5">
-              Tamaño Oficial: <span className="text-sky-300 font-semibold">3.89" × 5.19"</span> (Papel Carta 8.5" × 11")
+              Mini Flyers: <span className="text-sky-300 font-semibold">{cardWidth.toFixed(2)}" × {cardHeight.toFixed(2)}"</span> (Papel Carta 8.5" × 11")
             </p>
           </div>
         </div>

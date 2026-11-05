@@ -13,9 +13,12 @@ import {
 function prepareSlotCanvas(
   item: PromoItem,
   fitMode: PrintSettings['fitMode'],
-  targetWidthPx: number = 3.89 * 300, // 300 DPI
-  targetHeightPx: number = 5.19 * 300 // 300 DPI
+  targetWidthIn: number = 4.00,
+  targetHeightIn: number = 5.18
 ): Promise<string> {
+  const targetWidthPx = Math.round(targetWidthIn * 300); // 300 DPI
+  const targetHeightPx = Math.round(targetHeightIn * 300); // 300 DPI
+
   return new Promise((resolve) => {
     const img = new Image();
     img.onload = () => {
@@ -98,14 +101,14 @@ export async function generatePrintPdf(
     compress: true,
   });
 
-  const slots = calculateSlotPositions(settings.spacingMode);
+  const slots = calculateSlotPositions(settings.cardWidth, settings.cardHeight, settings.spacingMode);
   const copiesCount = settings.copies;
 
   // Encabezado técnico en el margen superior (fuera de la zona de corte)
   doc.setFontSize(7.5);
   doc.setTextColor(100, 116, 139); // slate-500
   doc.text(
-    'Boys & Girls Clubs • Estandarizador de Promociones (3.89" × 5.19") • IMPORTANTE: Imprimir al 100% de escala (Tamaño Real)',
+    `Boys & Girls Clubs • Estandarizador de Promociones (${settings.cardWidth.toFixed(2)}" × ${settings.cardHeight.toFixed(2)}") • IMPORTANTE: Imprimir al 100% de escala (Tamaño Real)`,
     PAGE_WIDTH_IN / 2,
     0.18,
     { align: 'center' }
@@ -117,7 +120,12 @@ export async function generatePrintPdf(
     const item = items[i] || items[0]; // Si no hay en el slot i, usar el primero
 
     if (item) {
-      const slotImageJpeg = await prepareSlotCanvas(item, settings.fitMode);
+      const slotImageJpeg = await prepareSlotCanvas(
+        item,
+        settings.fitMode,
+        settings.cardWidth,
+        settings.cardHeight
+      );
       doc.addImage(
         slotImageJpeg,
         'JPEG',

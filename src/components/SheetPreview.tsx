@@ -19,7 +19,7 @@ export const SheetPreview: React.FC<SheetPreviewProps> = ({
   settings,
   onSlotClick,
 }) => {
-  const slots = calculateSlotPositions(settings.spacingMode);
+  const slots = calculateSlotPositions(settings.cardWidth, settings.cardHeight, settings.spacingMode);
   const { copies, fitMode, cutLineStyle, spacingMode } = settings;
 
   // Obtenemos el item principal de respaldo si un slot no tiene su propio item
@@ -34,7 +34,7 @@ export const SheetPreview: React.FC<SheetPreviewProps> = ({
           <span>Vista Previa de Hoja Carta (8.5" × 11")</span>
         </span>
         <span className="text-slate-400 font-mono text-[11px]">
-          Escala Proporcional en Pantalla
+          {settings.cardWidth.toFixed(2)}" × {settings.cardHeight.toFixed(2)}"
         </span>
       </div>
 
@@ -45,7 +45,7 @@ export const SheetPreview: React.FC<SheetPreviewProps> = ({
       >
         {/* Encabezado técnico miniatura */}
         <div className="absolute top-1 left-0 right-0 text-center text-[7px] text-slate-400 font-mono tracking-tight pointer-events-none">
-          Boys & Girls Clubs • Hoja de Impresión Carta (8.5" × 11") • Promos 3.89" × 5.19"
+          Boys & Girls Clubs • Hoja de Impresión Carta (8.5" × 11") • Promos {settings.cardWidth.toFixed(2)}" × {settings.cardHeight.toFixed(2)}"
         </div>
 
         {/* Guías de corte centrales tipo guillotina (si están unidas al centro) */}
@@ -147,14 +147,14 @@ export const SheetPreview: React.FC<SheetPreviewProps> = ({
 
                     {/* Medida fija oficial */}
                     <div className="absolute bottom-1 right-1 bg-white/90 text-slate-700 text-[8px] font-mono px-1 py-0.2 rounded shadow-2xs">
-                      3.89" × 5.19"
+                      {settings.cardWidth.toFixed(2)}" × {settings.cardHeight.toFixed(2)}"
                     </div>
                   </div>
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center p-2 text-slate-400 bg-slate-50/60">
                     <FileQuestion className="w-5 h-5 mb-1" />
                     <span className="text-[9px] font-medium text-center">Sin arte cargado</span>
-                    <span className="text-[8px] text-slate-400">3.89" × 5.19"</span>
+                    <span className="text-[8px] text-slate-400">{settings.cardWidth.toFixed(2)}" × {settings.cardHeight.toFixed(2)}"</span>
                   </div>
                 )
               ) : (

@@ -13,7 +13,7 @@ interface PrintSheetProps {
 }
 
 export const PrintSheet: React.FC<PrintSheetProps> = ({ items, settings }) => {
-  const slots = calculateSlotPositions(settings.spacingMode);
+  const slots = calculateSlotPositions(settings.cardWidth, settings.cardHeight, settings.spacingMode);
   const { copies, fitMode, cutLineStyle, spacingMode } = settings;
   const primaryItem = items[0] || null;
 
@@ -44,7 +44,7 @@ export const PrintSheet: React.FC<PrintSheetProps> = ({ items, settings }) => {
           fontFamily: 'sans-serif',
         }}
       >
-        Boys & Girls Clubs • Estandarizador de Promociones (3.89" × 5.19") • Imprimir a escala 100% (Sin ajustar)
+        Boys & Girls Clubs • Estandarizador de Promociones ({settings.cardWidth.toFixed(2)}" × {settings.cardHeight.toFixed(2)}") • Imprimir a escala 100% (Sin ajustar)
       </div>
 
       {/* Slots con imágenes y líneas de corte */}

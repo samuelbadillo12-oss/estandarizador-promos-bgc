@@ -4,15 +4,18 @@ Aplicación web desarrollada para estandarizar y agilizar el proceso de impresi�
 
 ---
 
-## 🎯 Especificaciones Oficiales de Medida
+## 🎯 Especificaciones y Proporciones
 
-| Parámetro | Medida |
-| :--- | :--- |
-| **Tamaño de la Promo** | **3.89 pulgadas de ancho × 5.19 pulgadas de alto** (~98.8 mm × 131.8 mm) |
-| **Tamaño del Papel** | **Carta / US Letter (8.5 × 11.0 pulgadas)** |
-| **Capacidad por Hoja** | **Hasta 4 promociones** (cuadrícula 2 columnas × 2 filas) |
-| **Distribución de Corte** | Centro simétrico: 1 corte vertical a 4.25" y 1 corte horizontal a 5.50" |
-| **Resolución de Imprenta** | 300 DPI (alta fidelidad sin pixelación) |
+| Ajuste / Preset | Medida por Mini Flyer | Ideal Para |
+| :--- | :--- | :--- |
+| **Canva 8.5 × 11 (Recomendado)** | **4.00" de ancho × 5.18" de alto** | Artes creados en Canva en formato carta. Cero espacio blanco, líneas de corte pegadas al diseño. |
+| **Cuarto de Hoja Completo** | **4.25" de ancho × 5.50" de alto** | Divide la hoja carta en 4 partes iguales exactas de borde a borde. |
+| **BGC Clásico** | **3.89" de ancho × 5.19" de alto** | Medida histórica tradicional. |
+
+- **Papel Base**: Carta / US Letter (8.5 × 11.0 pulgadas)
+- **Capacidad por Hoja**: Hasta 4 promociones (cuadrícula 2 columnas × 2 filas)
+- **Distribución de Corte**: Centro simétrico continuo (1 corte vertical a 4.25" y 1 corte horizontal a 5.50")
+- **Resolución de Imprenta**: 300 DPI (alta fidelidad vectorial y rasterizada)
 
 ---
 

@@ -6,8 +6,13 @@ import {
   Maximize2,
   Grid,
   Check,
+  Sparkles,
 } from 'lucide-react';
-import { PrintSettings, CutLineStyle } from '../utils/constants';
+import {
+  PrintSettings,
+  CutLineStyle,
+  SIZE_PRESETS,
+} from '../utils/constants';
 
 interface ControlPanelProps {
   settings: PrintSettings;
@@ -66,11 +71,61 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
         </div>
       </div>
 
-      {/* 2. Modo de Ajuste del Arte */}
+      {/* 2. Tamaño y Proporción de los Mini Flyers */}
+      <div>
+        <div className="flex items-center justify-between mb-2">
+          <label className="text-xs font-semibold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+            <span>3. Tamaño y Proporción</span>
+          </label>
+          <span className="text-[11px] font-mono font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+            {settings.cardWidth.toFixed(2)}" × {settings.cardHeight.toFixed(2)}"
+          </span>
+        </div>
+
+        <div className="space-y-1.5">
+          {SIZE_PRESETS.map((preset) => {
+            const isSelected = settings.presetId === preset.id;
+            return (
+              <button
+                key={preset.id}
+                type="button"
+                onClick={() =>
+                  onUpdateSettings({
+                    presetId: preset.id,
+                    cardWidth: preset.width,
+                    cardHeight: preset.height,
+                  })
+                }
+                className={`w-full p-2.5 rounded-xl text-left border transition-all ${
+                  isSelected
+                    ? 'bg-blue-50/80 border-blue-500 text-blue-900 ring-1 ring-blue-500'
+                    : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-700'
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-slate-800">{preset.name}</span>
+                    <span className="text-[10px] font-mono font-medium px-1.5 py-0.2 rounded bg-slate-100 text-slate-600 border border-slate-200">
+                      {preset.badge}
+                    </span>
+                  </div>
+                  {isSelected && <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />}
+                </div>
+                <p className="text-[11px] text-slate-500 mt-1 leading-snug">
+                  {preset.description}
+                </p>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 3. Modo de Ajuste del Arte */}
       <div>
         <label className="text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
           <Maximize2 className="w-3.5 h-3.5 text-blue-600" />
-          <span>3. Ajuste de Tamaño (3.89" × 5.19")</span>
+          <span>4. Ajuste de Imagen</span>
         </label>
 
         <div className="grid grid-cols-2 gap-2">
@@ -88,7 +143,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
               {settings.fitMode === 'contain' && <Check className="w-3.5 h-3.5 text-blue-600" />}
             </div>
             <p className="text-[11px] text-slate-500 mt-0.5 leading-snug">
-              No corta nada del contenido original. Recomendado para que no se pierda texto.
+              No corta nada del contenido original. Recomendado para no perder textos ni fechas.
             </p>
           </button>
 
@@ -112,11 +167,11 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
         </div>
       </div>
 
-      {/* 3. Guías de Corte y Guillotina */}
+      {/* 4. Guías de Corte y Guillotina */}
       <div>
         <label className="text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
           <Scissors className="w-3.5 h-3.5 text-blue-600" />
-          <span>4. Líneas y Marcas de Corte</span>
+          <span>5. Líneas y Marcas de Corte</span>
         </label>
 
         <div className="space-y-2">
@@ -180,7 +235,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
         </div>
       </div>
 
-      {/* 4. Botones de Acción de Impresión */}
+      {/* 5. Botones de Acción de Impresión */}
       <div className="pt-3 border-t border-slate-200 space-y-2.5">
         <button
           type="button"

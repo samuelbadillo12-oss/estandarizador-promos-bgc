@@ -37,11 +37,12 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
           <div className="bg-blue-50/80 border border-blue-200 rounded-xl p-4">
             <h4 className="font-semibold text-blue-900 text-xs uppercase tracking-wider mb-1 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-blue-600" />
-              Medidas Oficiales de Imprenta
+              Medidas y Proporciones
             </h4>
             <p className="text-slate-700 text-xs leading-relaxed">
-              Cada promoción mide exactamente <strong className="text-blue-900">3.89 pulgadas de ancho × 5.19 pulgadas de alto</strong>.
-              En una hoja de papel <strong>Carta (8.5" × 11.0")</strong> caben exactamente <strong>4 promociones</strong> (2 columnas × 2 filas).
+              Para artes creados en <strong>Canva (8.5" × 11.0")</strong>, la medida recomendada es <strong className="text-blue-900">4.00" de ancho × 5.18" de alto</strong>.
+              Esto garantiza que el flyer llene el espacio por completo, eliminando espacios blancos y haciendo que las líneas de corte queden exactamente en los bordes del arte.
+              También puedes seleccionar <strong>Cuarto de Hoja (4.25" × 5.50")</strong> o la medida clásica <strong>3.89" × 5.19"</strong>.
             </p>
           </div>
 

@@ -147,7 +147,11 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-100 flex flex-col font-sans">
-      <Navbar onOpenHelp={() => setIsHelpOpen(true)} />
+      <Navbar
+        onOpenHelp={() => setIsHelpOpen(true)}
+        cardWidth={settings.cardWidth}
+        cardHeight={settings.cardHeight}
+      />
 
       {/* Alerta de Error si ocurre */}
       {errorMessage && (
