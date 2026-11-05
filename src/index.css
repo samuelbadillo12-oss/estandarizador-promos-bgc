@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@layer base {
+  @page {
+    size: 8.5in 11in;
+    margin: 0mm;
+  }
+}
+
+@media print {
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    width: 8.5in !important;
+    height: 11in !important;
+  }
+
+  /* Ocultar interfaz de la app en la impresión */
+  header,
+  footer,
+  nav,
+  aside,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  #root {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #printable-sheet {
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 8.5in !important;
+    height: 11in !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}
+
